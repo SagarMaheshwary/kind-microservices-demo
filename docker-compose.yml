@@ -1,0 +1,89 @@
+name: kind-microservices-demo
+
+networks:
+  kind-microservices-demo-net:
+    driver: bridge
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      target: development
+    container_name: api-gateway
+    ports:
+      - 4000:4000
+    volumes:
+      - ./api-gateway:/app
+    networks:
+      - kind-microservices-demo-net
+    depends_on:
+      user-service:
+        condition: service_healthy
+      notification-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/readyz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  user-service:
+    build:
+      context: ./user-service
+      target: development
+    container_name: user-service
+    ports:
+      - 4001:4000
+    volumes:
+      - ./user-service:/app
+    networks:
+      - kind-microservices-demo-net
+    depends_on:
+      notification-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/readyz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  notification-service:
+    build:
+      context: ./notification-service
+      target: development
+    container_name: notification-service
+    ports:
+      - 4002:4000
+    volumes:
+      - ./notification-service:/app
+      - /app/node_modules
+    networks:
+      - kind-microservices-demo-net
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/readyz"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      # - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=default
+      - RABBITMQ_DEFAULT_PASS=default
+    # volumes:
+    #   - ./docker/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    #   - ./docker/rabbitmq/data:/var/lib/rabbitmq/mnesia
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - kind-microservices-demo-net
