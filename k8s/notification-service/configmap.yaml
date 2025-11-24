@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notification-service
+  namespace: microservices
+data:
+  HTTP_SERVER_URL: "0.0.0.0:4000"
+
+  AMQP_HOST: "rabbitmq.datastores.svc.cluster.local"
+  AMQP_PORT: "5672"
+  AMQP_QUEUE: "notification-service"

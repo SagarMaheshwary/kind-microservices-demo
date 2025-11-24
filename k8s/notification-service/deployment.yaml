@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  namespace: microservices
+  labels:
+    app: notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+        - name: notification-service
+          image: kind-registry:5000/notification-service:1.0
+          envFrom:
+            - configMapRef:
+                name: notification-service
+            - secretRef:
+                name: notification-service
+          ports:
+            - containerPort: 4000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 4000
+            initialDelaySeconds: 25
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "150m"
+            limits:
+              memory: "150Mi"
+              cpu: "300m"
