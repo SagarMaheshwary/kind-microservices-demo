@@ -1,7 +1,7 @@
 {
   "lockfile_version": "1",
   "packages": {
-    "cloud-provider-kind@latest": {
+    "cloud-provider-kind@0.6.0": {
       "last_modified": "2025-11-15T07:28:48Z",
       "resolved": "github:NixOS/nixpkgs/1d4c88323ac36805d09657d13a5273aea1b34f0c#cloud-provider-kind",
       "source": "devbox-search",
@@ -149,54 +149,6 @@
         }
       }
     },
-    "kubecolor@0.5.0": {
-      "last_modified": "2025-04-17T05:47:26Z",
-      "resolved": "github:NixOS/nixpkgs/ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c#kubecolor",
-      "source": "devbox-search",
-      "version": "0.5.0",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/c9dys58vjjn8s7x0cxpcslgzcz5zisq6-kubecolor-0.5.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/c9dys58vjjn8s7x0cxpcslgzcz5zisq6-kubecolor-0.5.0"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/pxf9pa2sxhnj9z7xkpav7nx9186vamyf-kubecolor-0.5.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/pxf9pa2sxhnj9z7xkpav7nx9186vamyf-kubecolor-0.5.0"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/6ih1xv6p2iybw58ln4vprpbwbhl2n3g4-kubecolor-0.5.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/6ih1xv6p2iybw58ln4vprpbwbhl2n3g4-kubecolor-0.5.0"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/5wnxvnfgwbjdy7pcmahyxa5svslgpr2a-kubecolor-0.5.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/5wnxvnfgwbjdy7pcmahyxa5svslgpr2a-kubecolor-0.5.0"
-        }
-      }
-    },
     "kubectl@1.32.1": {
       "last_modified": "2025-02-07T11:26:36Z",
       "resolved": "github:NixOS/nixpkgs/d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d#kubectl",
@@ -326,54 +278,6 @@
             }
           ],
           "store_path": "/nix/store/casy6g2rdnc3j2909bdcvdbjpyk535gr-kubectx-0.9.5"
-        }
-      }
-    },
-    "kubernetes-helm@3.17.0": {
-      "last_modified": "2025-02-07T11:26:36Z",
-      "resolved": "github:NixOS/nixpkgs/d98abf5cf5914e5e4e9d57205e3af55ca90ffc1d#kubernetes-helm",
-      "source": "devbox-search",
-      "version": "3.17.0",
-      "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/mqm6vkrs31c8rx8phivl274ja5iq6h47-kubernetes-helm-3.17.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/mqm6vkrs31c8rx8phivl274ja5iq6h47-kubernetes-helm-3.17.0"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/sfjsrsx7wavzdq3pxx66np9db265chvg-kubernetes-helm-3.17.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/sfjsrsx7wavzdq3pxx66np9db265chvg-kubernetes-helm-3.17.0"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/539izwrsfhkbs0j8llrfkg2m6kikc9jk-kubernetes-helm-3.17.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/539izwrsfhkbs0j8llrfkg2m6kikc9jk-kubernetes-helm-3.17.0"
-        },
-        "x86_64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/lph6vddfs1x2dgb5bkkv0mhjkph220is-kubernetes-helm-3.17.0",
-              "default": true
-            }
-          ],
-          "store_path": "/nix/store/lph6vddfs1x2dgb5bkkv0mhjkph220is-kubernetes-helm-3.17.0"
         }
       }
     }
