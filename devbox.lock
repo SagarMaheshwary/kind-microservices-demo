@@ -2,8 +2,8 @@
   "lockfile_version": "1",
   "packages": {
     "cloud-provider-kind@0.6.0": {
-      "last_modified": "2025-11-15T07:28:48Z",
-      "resolved": "github:NixOS/nixpkgs/1d4c88323ac36805d09657d13a5273aea1b34f0c#cloud-provider-kind",
+      "last_modified": "2025-11-23T21:50:36Z",
+      "resolved": "github:NixOS/nixpkgs/ee09932cedcef15aaf476f9343d1dea2cb77e261#cloud-provider-kind",
       "source": "devbox-search",
       "version": "0.6.0",
       "systems": {
@@ -11,41 +11,41 @@
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/pk319j8zmv1pjkl23wkjpyvip7jf4xqs-cloud-provider-kind-0.6.0",
+              "path": "/nix/store/ifzwmmmn0hgspjvdpkhf4b30il33fahc-cloud-provider-kind-0.6.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/pk319j8zmv1pjkl23wkjpyvip7jf4xqs-cloud-provider-kind-0.6.0"
+          "store_path": "/nix/store/ifzwmmmn0hgspjvdpkhf4b30il33fahc-cloud-provider-kind-0.6.0"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/d5b5jhv6blq9nb3ixwn7y8mh8xzsynh0-cloud-provider-kind-0.6.0",
+              "path": "/nix/store/rbzjnqd0x2mdrq6r5jq1mybzr44imc92-cloud-provider-kind-0.6.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/d5b5jhv6blq9nb3ixwn7y8mh8xzsynh0-cloud-provider-kind-0.6.0"
+          "store_path": "/nix/store/rbzjnqd0x2mdrq6r5jq1mybzr44imc92-cloud-provider-kind-0.6.0"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/hs7df912q69jad6jkpiiwl258s62wgbx-cloud-provider-kind-0.6.0",
+              "path": "/nix/store/kzr2i973xz2znwmv8igmzq037zq7hrdb-cloud-provider-kind-0.6.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/hs7df912q69jad6jkpiiwl258s62wgbx-cloud-provider-kind-0.6.0"
+          "store_path": "/nix/store/kzr2i973xz2znwmv8igmzq037zq7hrdb-cloud-provider-kind-0.6.0"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/sfz6bsycs4lnwfv1ri7fqkv1fdfk3x59-cloud-provider-kind-0.6.0",
+              "path": "/nix/store/7p754lz00f9xday37s4hnjn99x6zs21x-cloud-provider-kind-0.6.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/sfz6bsycs4lnwfv1ri7fqkv1fdfk3x59-cloud-provider-kind-0.6.0"
+          "store_path": "/nix/store/7p754lz00f9xday37s4hnjn99x6zs21x-cloud-provider-kind-0.6.0"
         }
       }
     },
