@@ -1,6 +1,6 @@
 # Kind Microservices Demo
 
-A fully containerized microservices playground running on **Kind (Kubernetes-in-Docker)**, featuring **Golang**, **NestJS**, **RabbitMQ**, **NGINX Ingress**, and a local Docker registry.
+A fully containerized microservices playground running on **Kind (Kubernetes-in-Docker)**, featuring **Golang**, **NestJS**, **RabbitMQ**, **NGINX Ingress**, and a local **Docker registry**.
 
 This project demonstrates a clean, minimal example of an **event-driven microservices architecture** deployed inside a local Kubernetes cluster.
 
@@ -40,12 +40,10 @@ This project demonstrates a clean, minimal example of an **event-driven microser
 
 - **Devbox Environment**
   Creates a reproducible development environment containing:
-
+  - docker
   - kind
   - kubectl
-  - k9s
   - cloud-provider-kind
-    ...and more.
 
 ### Architecture
 
@@ -86,15 +84,13 @@ RabbitMQ --> NotificationService
 
 Install locally:
 
-- Docker
-- Kind
-- Kubectl
-- Kubectx
-- cloud-provider-kind
-- k9s (optional but recommended)
-- make
+- [Docker](https://docs.docker.com/engine/install)
+- [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+- [cloud-provider-kind](https://github.com/kubernetes-sigs/cloud-provider-kind)
+- [make](https://www.gnu.org/software/make/)
 
-### **Alternative: Use Devbox**
+### **Alternative: Use [Devbox](https://www.jetify.com/docs/devbox/installing-devbox)**
 
 Install only:
 
@@ -102,9 +98,7 @@ Install only:
 devbox shell
 ```
 
-Inside the shell, tools such as kind, kubectl, k9s, and cloud-provider-kind are automatically available.
-
-> **Note:** Docker must still be installed separately.
+Inside the shell, tools such as docker, kind, kubectl, and cloud-provider-kind are automatically available.
 
 ---
 
@@ -126,19 +120,13 @@ make kind-create-cluster
 
 ### Deploy NGINX Ingress Controller
 
+below command will install NGINX Ingress and start cloud-provider-kind in background:
+
 ```bash
 make kind-deploy-nginx-ingress
 ```
 
-Then in **another terminal**, run:
-
-```bash
-cloud-provider-kind
-```
-
-This assigns an external LoadBalancer IP.
-
-If it times out, manually check:
+The command will wait for External IP to be available but if it times out, you can manually check via:
 
 ```bash
 kubectl get svc -n ingress-nginx
@@ -183,26 +171,32 @@ kubectl get pods -n microservices
 kubectl get pods -n datastores
 ```
 
-Or simply open:
-
-```bash
-k9s
-```
-
 ### Test the Setup
 
 Create a user:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" \
-  -d '{"name": "daniel", "email": "daniel@gmail.com", "password": "123"}' \
-  http://microservices.local/users | jq
+curl -X POST http://microservices.local/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "daniel", "email": "daniel@example.com", "password": "123"}'
 ```
 
-Expected Notification Service log:
+Check Notification Service logs:
 
+```bash
+kubectl logs -f deployment/notification-service -n microservices
 ```
-Welcome email sent to daniel
+
+You should see something like:
+
+```json
+{
+  "level": "log",
+  "pid": 25,
+  "timestamp": 1764442767463,
+  "message": "Sending welcome email to daniel",
+  "context": "NotificationController"
+}
 ```
 
 ### Cleanup
@@ -222,7 +216,7 @@ make kind-delete-cluster
 Deployment logs:
 
 ```bash
-kubectl logs -n microservices deploy/notification-service
+kubectl logs -n microservices deployment/notification-service
 ```
 
 Specific pod logs:
@@ -235,7 +229,7 @@ kubectl logs -n microservices <pod-name>
 Stream logs:
 
 ```bash
-kubectl logs -n microservices -f deploy/notification-service
+kubectl logs -n microservices -f deployment/notification-service
 ```
 
 ### Check Pod / Deployment Status
@@ -255,26 +249,20 @@ kubectl describe pod -n microservices <pod-name>
 Deployments:
 
 ```bash
-kubectl get deploy -n microservices
-kubectl describe deploy -n microservices <deployment-name>
+kubectl get deployment -n microservices
+kubectl describe deployment -n microservices <deployment-name>
 ```
 
 Services:
 
 ```bash
-kubectl get svc -n microservices
+kubectl get service -n microservices
 ```
 
 Live watching:
 
 ```bash
 watch kubectl get pods -n microservices
-```
-
-Or open:
-
-```bash
-k9s
 ```
 
 ### Access RabbitMQ Management UI
@@ -320,7 +308,7 @@ watch kubectl get pods -A
 
 ## Support & Contributions
 
-If you find this project useful, consider starring the repository — it helps others discover it.
+If you find this project useful, consider giving it a ⭐, it helps others discover it.
 
-Contributions, feedback, and suggestions are welcome!
-Feel free to open an issue or submit a PR.
+Contributions, feedback, and suggestions are always welcome.
+Feel free to open an issue or submit a PR anytime.
