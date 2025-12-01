@@ -2,10 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
   "packages": [
     "kubectl@1.32.1",
-    "kubectx@0.9.5",
     "kind@0.26.0",
-    "k9s@0.32.7",
-    "cloud-provider-kind@0.6.0"
+    "cloud-provider-kind@0.6.0",
+    "docker@28.5.1"
   ],
   "shell": {
     "init_hook": [
