@@ -4,8 +4,6 @@ A fully containerized microservices playground running on **Kind (Kubernetes-in-
 
 This project demonstrates a clean, minimal example of an **event-driven microservices architecture** deployed inside a local Kubernetes cluster.
 
----
-
 ## Overview
 
 ### **Microservices**
@@ -22,7 +20,7 @@ This project demonstrates a clean, minimal example of an **event-driven microser
 
 ### **Infrastructure Components**
 
-- **Local Docker Registry** (`registry` container)
+- **Local Docker Registry**
   Used by Kind to pull microservice images.
 
 - **RabbitMQ (StatefulSet)**
@@ -37,6 +35,7 @@ This project demonstrates a clean, minimal example of an **event-driven microser
   - Metrics Server
   - Namespaces
   - LoadBalancer support via `cloud-provider-kind`
+  - Liveness and Readiness Probes
 
 - **Devbox Environment**
   Creates a reproducible development environment containing:
@@ -78,8 +77,6 @@ UserService -->|Publish user.created| RabbitMQ
 RabbitMQ --> NotificationService
 ```
 
----
-
 ## Requirements
 
 Install locally:
@@ -90,17 +87,13 @@ Install locally:
 - [cloud-provider-kind](https://github.com/kubernetes-sigs/cloud-provider-kind)
 - [make](https://www.gnu.org/software/make/)
 
-### **Alternative: Use [Devbox](https://www.jetify.com/docs/devbox/installing-devbox)**
-
-Install only:
+Alternatively, install only [Devbox](https://www.jetify.com/docs/devbox/installing-devbox) and run below command inside the project root:
 
 ```bash
 devbox shell
 ```
 
-Inside the shell, tools such as docker, kind, kubectl, and cloud-provider-kind are automatically available.
-
----
+Inside the shell, tools like Docker, Kind, kubectl, and cloud-provider-kind are installed and isolated to the project directory.
 
 ## Setup & Deployment
 
@@ -129,7 +122,7 @@ make kind-deploy-nginx-ingress
 The command will wait for External IP to be available but if it times out, you can manually check via:
 
 ```bash
-kubectl get svc -n ingress-nginx
+kubectl get service -n ingress-nginx
 ```
 
 ### Add Host Entry
@@ -207,8 +200,6 @@ Delete the Kind cluster:
 make kind-delete-cluster
 ```
 
----
-
 ## Debugging & Troubleshooting
 
 ### View Logs (Example: Notification Service)
@@ -262,13 +253,13 @@ kubectl get service -n microservices
 Live watching:
 
 ```bash
-watch kubectl get pods -n microservices
+kubectl get pods -n microservices -w
 ```
 
 ### Access RabbitMQ Management UI
 
 ```bash
-kubectl port-forward -n datastores svc/rabbitmq 15672:15672
+kubectl port-forward -n datastores service/rabbitmq 15672:15672
 ```
 
 Then open:
@@ -301,10 +292,8 @@ kubectl get pods -n datastores
 Watch all namespaces:
 
 ```bash
-watch kubectl get pods -A
+kubectl get pods -A -w
 ```
-
----
 
 ## Support & Contributions
 
