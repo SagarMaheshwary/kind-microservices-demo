@@ -6,43 +6,21 @@ This project demonstrates a clean, minimal example of an **event-driven microser
 
 ## Overview
 
-### **Microservices**
+### Microservices
 
-- **API Gateway (Go, REST)**
-  Exposes `POST /users` and forwards requests to the User Service.
+- **API Gateway (Go, REST)** Exposes `POST /users` and forwards requests to the User Service.
 
-- **User Service (Go, REST)**
-  Creates a user and publishes a `user.created` event to RabbitMQ.
+- **User Service (Go, REST)** Creates a user and publishes a `user.created` event to RabbitMQ.
 
-- **Notification Service (NestJS + RabbitMQ)**
-  Subscribes to `user.created` and logs:
-  _“Welcome email sent to <user name>”_.
+- **Notification Service (NestJS + RabbitMQ)** Subscribes to `user.created` and logs: _“Welcome email sent to <user name>”_.
 
-### **Infrastructure Components**
+### Infrastructure Components
 
-- **Local Docker Registry**
-  Used by Kind to pull microservice images.
-
-- **RabbitMQ (StatefulSet)**
-  Provides durable message queues.
-
-- **NGINX Ingress Controller**
-  Routes external traffic to the API Gateway.
-
-- **Kind Cluster Setup**
-
-  - Custom node configuration
-  - Metrics Server
-  - Namespaces
-  - LoadBalancer support via `cloud-provider-kind`
-  - Liveness and Readiness Probes
-
-- **Devbox Environment**
-  Creates a reproducible development environment containing:
-  - docker
-  - kind
-  - kubectl
-  - cloud-provider-kind
+- **Kind Cluster** – Includes custom node config, Metrics Server, namespaces, LoadBalancer support via `cloud-provider-kind`, and liveness/readiness probes.
+- **Local Docker Registry** – Used by Kind to pull microservice images.
+- **RabbitMQ (StatefulSet)** – Provides persistent message queues.
+- **NGINX Ingress Controller** – Routes external traffic to the API Gateway.
+- **Devbox Environment** – Reproducible dev environment with `docker`, `kind`, `kubectl`, and `cloud-provider-kind`.
 
 ### Architecture
 
