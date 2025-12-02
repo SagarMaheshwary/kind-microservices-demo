@@ -1,9 +1,11 @@
 package handler
 
 import (
+	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sagarmaheshwary/kind-microservices-demo/api-gateway/internal/constant"
 	"github.com/sagarmaheshwary/kind-microservices-demo/api-gateway/internal/helper"
 	"github.com/sagarmaheshwary/kind-microservices-demo/api-gateway/internal/logger"
 	"github.com/sagarmaheshwary/kind-microservices-demo/api-gateway/internal/service"
@@ -56,6 +58,10 @@ func (u *userHandler) CreateUser(c *gin.Context) {
 		Password: in.Password,
 	})
 
+	if err != nil && errors.Is(err, constant.ErrHTTPServiceUnavailable) {
+		c.JSON(http.StatusServiceUnavailable, helper.PrepareResponse(constant.ErrHTTPServiceUnavailable.Error(), nil))
+		return
+	}
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, helper.PrepareResponse("error", nil))
 		return
