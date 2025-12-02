@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+
+	"github.com/sagarmaheshwary/kind-microservices-demo/api-gateway/internal/constant"
 )
 
 type UserClient struct {
@@ -36,10 +38,11 @@ func (c *UserClient) CreateUser(ctx context.Context, req *CreateUserRequest) (*C
 
 	resp, err := c.http.Client.Do(httpReq)
 	if err != nil {
-		return nil, err
+		return nil, constant.ErrHTTPServiceUnavailable
 	}
 	defer resp.Body.Close()
 
+	//@TODO: improve error handling
 	if resp.StatusCode >= 400 {
 		return nil, errors.New("http api error")
 	}
