@@ -71,7 +71,7 @@ Alternatively, install only [Devbox](https://www.jetify.com/docs/devbox/installi
 devbox shell
 ```
 
-Inside the shell, tools like Docker, Kind, kubectl, and cloud-provider-kind are installed and isolated to the project directory.
+Inside the shell, tools like Kind, kubectl, and cloud-provider-kind are installed and isolated to the project directory. (you still need to install Docker separately)
 
 ## Setup & Deployment
 
