@@ -4,6 +4,9 @@ A fully containerized microservices playground running on **Kind (Kubernetes-in-
 
 This project demonstrates a clean, minimal example of an **event-driven microservices architecture** deployed inside a local Kubernetes cluster.
 
+The full architectural walkthrough is explained in this article:
+**→ [Hands-On Kubernetes: Running Event-Driven Microservices Locally with KIND](https://dev.to/sagarmaheshwary/hands-on-kubernetes-running-event-driven-microservices-locally-with-kind-1cm8)**
+
 ## Overview
 
 ### Microservices
