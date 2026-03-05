@@ -3,8 +3,7 @@
   "packages": [
     "kubectl@1.32.1",
     "kind@0.26.0",
-    "cloud-provider-kind@0.6.0",
-    "docker@28.5.1"
+    "cloud-provider-kind@0.6.0"
   ],
   "shell": {
     "init_hook": [

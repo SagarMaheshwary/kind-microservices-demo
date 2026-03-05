@@ -23,7 +23,7 @@ The full architectural walkthrough is explained in this article:
 - **Local Docker Registry** – Used by Kind to pull microservice images.
 - **RabbitMQ (StatefulSet)** – Provides persistent message queues.
 - **NGINX Ingress Controller** – Routes external traffic to the API Gateway.
-- **Devbox Environment** – Reproducible dev environment with `docker`, `kind`, `kubectl`, and `cloud-provider-kind`.
+- **Devbox Environment** – Reproducible dev environment with `kind`, `kubectl`, and `cloud-provider-kind`.
 
 ### Architecture
 
